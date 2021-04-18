@@ -314,7 +314,7 @@ void ft_print_grid(int **grid)
 
 	i = 0;
 	j = 0;
-//	printf("\n");
+	printf("\n");
 	while (i < SIZE)
 	{
 		j = 0;
@@ -326,7 +326,7 @@ void ft_print_grid(int **grid)
 		printf("\n");
 		i++;
 	}
-//	printf("\n");
+	printf("\n");
 }
 
 void ft_add_row_to_grid(int **grid, int *row, int pos)
@@ -427,21 +427,21 @@ int ft_calculate_views(int **grid, int *int_views)
 	while (i < SIZE && grid[i][0] != 0) // fila
 	{
 
-		// print_array(grid[i], SIZE);
-		// printf("\tview n: %d", SIZE * 2 + i);
+		print_array(grid[i], SIZE);
+		printf("\tview n: %d", SIZE * 2 + i);
 
-		// //ft_get_column (grid, row, i);
-		// printf("\tL %d", ft_calculate_row_view_left(grid[i]));
-		// printf("(%d)", int_views[SIZE * 2 + i]);
+		//ft_get_column (grid, row, i);
+		printf("\tL %d", ft_calculate_row_view_left(grid[i]));
+		printf("(%d)", int_views[SIZE * 2 + i]);
 
-		// printf(" R %d", ft_calculate_row_view_right(grid[i]));
-		// printf("(%d)  ", int_views[SIZE * 3 + i]);
+		printf(" R %d", ft_calculate_row_view_right(grid[i]));
+		printf("(%d)  ", int_views[SIZE * 3 + i]);
 		if (!(ft_calculate_row_view_left(grid[i]) == int_views[SIZE * 2 + i] && ft_calculate_row_view_right(grid[i]) == int_views[SIZE * 3 + i]))
 		{
-	//		printf("\tNo cumple vistas laterales\n");
+			printf("\tNo cumple vistas laterales\n");
 			return (0);
 		}
-		// printf("\n");
+		printf("\n");
 		i++;
 	}
 	//free (row);
@@ -454,7 +454,7 @@ int ft_grid_is_valid(int **grid, int *int_views, int etapa)
 		return (0);
 	else if (!(ft_calculate_views(grid, int_views)))
 	{
-		//printf("\tNo cumple\n");
+		printf("\tNo cumple\n");
 		return (0);
 	}
 	return (1);
@@ -479,9 +479,9 @@ int ft_solve(int **grid, int *int_views, int **arr_rows, int etapa, int success)
 			}
 			else
 			{
-				// printf("\n--------------------------- VALIDO -----------------------\n");
-				// ft_print_grid(grid);
-				// printf("\n--------------------------- VALIDO -----------------------\n");
+				printf("\n--------------------------- VALIDO -----------------------\n");
+				ft_print_grid(grid);
+				printf("\n--------------------------- VALIDO -----------------------\n");
 				success = 1;
 			}
 		}
@@ -504,7 +504,7 @@ int main(int argc, char **argv)
 	int int_views[SIZE * SIZE];
 
 	grid = ft_initialize_grid();
-//	ft_print_grid(grid);
+	ft_print_grid(grid);
 
 	j = 0;
 	while (j++ < SIZE)
@@ -532,97 +532,97 @@ int main(int argc, char **argv)
 		i++;
 	}
 	permWithRep(arr_cols, array1, fixed, SIZE, 0, 0);
-	// i = 0;
-	// c = 0;
-	// while (i < max_posib)
-	// {
-	// 	// if (arr[i][0] == 1) Green();
-	// 	// else if (arr[i][0] == 2) Yellow();
-	// 	// else if (arr[i][0] == 3) Blue();
-	// 	// else if (arr[i][0] == 4) Purple();
-	// 	//print_array(arr[i], SIZE);
+	i = 0;
+	c = 0;
+	while (i < max_posib)
+	{
+		// if (arr[i][0] == 1) Green();
+		// else if (arr[i][0] == 2) Yellow();
+		// else if (arr[i][0] == 3) Blue();
+		// else if (arr[i][0] == 4) Purple();
+		//print_array(arr[i], SIZE);
 
-	// 	printf("L %d ", ft_calculate_row_view_left(arr_rows[i]));
-	// 	printf("R %d     ", ft_calculate_row_view_right(arr_rows[i]));
-	// 	j = 0;
-	// 	while (j++ < SIZE)
-	// 	{
-	// 		if (ft_calculate_row_view_left(arr_rows[i]) == int_views[SIZE * 2 + j - 1] && ft_calculate_row_view_right(arr_rows[i]) == int_views[SIZE * 3 + j - 1])
-	// 		{
-	// 			GreenBold();
-	// 			printf("\xE2\x9C\x94 ");
-	// 			candid_rows[j - 1][ft_find_next_zero(candid_rows[j - 1])] = i;
-	// 		}
-	// 		else
-	// 			printf("  ");
-	// 		print_array(arr_rows[i], SIZE);
-	// 		printf("   L%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
-	// 		printf("R%d (%d)  ", j - 1, int_views[SIZE * 3 + j - 1]);
+		printf("L %d ", ft_calculate_row_view_left(arr_rows[i]));
+		printf("R %d     ", ft_calculate_row_view_right(arr_rows[i]));
+		j = 0;
+		while (j++ < SIZE)
+		{
+			if (ft_calculate_row_view_left(arr_rows[i]) == int_views[SIZE * 2 + j - 1] && ft_calculate_row_view_right(arr_rows[i]) == int_views[SIZE * 3 + j - 1])
+			{
+				GreenBold();
+				printf("\xE2\x9C\x94 ");
+				candid_rows[j - 1][ft_find_next_zero(candid_rows[j - 1])] = i;
+			}
+			else
+				printf("  ");
+			print_array(arr_rows[i], SIZE);
+			printf("   L%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
+			printf("R%d (%d)  ", j - 1, int_views[SIZE * 3 + j - 1]);
 
-	// 		reset();
-	// 	}
-	// 	printf("\n");
-	// 	reset();
+			reset();
+		}
+		printf("\n");
+		reset();
 
-	// 	i++;
-	// }
+		i++;
+	}
 
-	// j = 0;
-	// while (j < SIZE)
-	// {
+	j = 0;
+	while (j < SIZE)
+	{
 
-	// 	printf("\nCandidates Rows: ");
-	// 	print_array(candid_rows[j], 20);
-	// 	j++;
-	// }
-	// 	j = 0;
+		printf("\nCandidates Rows: ");
+		print_array(candid_rows[j], 20);
+		j++;
+	}
+		j = 0;
 
-	// printf("\n\n______________\n\n");
-	// i = 0;
+	printf("\n\n______________\n\n");
+	i = 0;
 
-	// while (i < max_posib)
-	// {
-	// 	// if (arr[i][0] == 1) Green();
-	// 	// else if (arr[i][0] == 2) Yellow();
-	// 	// else if (arr[i][0] == 3) Blue();
-	// 	// else if (arr[i][0] == 4) Purple();
-	// 	//print_array(arr[i], SIZE);
-	// 	c = 0;
-	// 	printf("L %d ", ft_calculate_row_view_left(arr_cols[i]));
-	// 	printf("R %d     ", ft_calculate_row_view_right(arr_cols[i]));
-	// 	j = 0;
-	// 	while (j++ < SIZE)
-	// 	{
-	// 		if (ft_calculate_row_view_left(arr_cols[i]) == int_views[SIZE * 0 + j - 1] && ft_calculate_row_view_right(arr_cols[i]) == int_views[SIZE * 1 + j - 1])
-	// 		{
-	// 			GreenBold();
-	// 			printf("\xE2\x9C\x94 ");
-	// 			candid_cols[j - 1][ft_find_next_zero(candid_cols[j - 1])] = i;
-	// 		}
-	// 		else
-	// 			printf("  ");
-	// 		print_array(arr_cols[i], SIZE);
-	// 		printf("   L%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
-	// 		printf("R%d (%d)  ", j - 1, int_views[SIZE * 3 + j - 1]);
+	while (i < max_posib)
+	{
+		// if (arr[i][0] == 1) Green();
+		// else if (arr[i][0] == 2) Yellow();
+		// else if (arr[i][0] == 3) Blue();
+		// else if (arr[i][0] == 4) Purple();
+		//print_array(arr[i], SIZE);
+		c = 0;
+		printf("L %d ", ft_calculate_row_view_left(arr_cols[i]));
+		printf("R %d     ", ft_calculate_row_view_right(arr_cols[i]));
+		j = 0;
+		while (j++ < SIZE)
+		{
+			if (ft_calculate_row_view_left(arr_cols[i]) == int_views[SIZE * 0 + j - 1] && ft_calculate_row_view_right(arr_cols[i]) == int_views[SIZE * 1 + j - 1])
+			{
+				GreenBold();
+				printf("\xE2\x9C\x94 ");
+				candid_cols[j - 1][ft_find_next_zero(candid_cols[j - 1])] = i;
+			}
+			else
+				printf("  ");
+			print_array(arr_cols[i], SIZE);
+			printf("   L%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
+			printf("R%d (%d)  ", j - 1, int_views[SIZE * 3 + j - 1]);
 
-	// 		reset();
-	// 	}
-	// 	printf("\n");
-	// 	reset();
-	// 	i++;
-	// }
+			reset();
+		}
+		printf("\n");
+		reset();
+		i++;
+	}
 
 	ft_solve(grid, int_views, arr_rows, 0, 0);
 	ft_print_grid(grid);
 
-	// j=0;
-	// while (j < SIZE)
-	// {
+	j=0;
+	while (j < SIZE)
+	{
 
-	// 	printf("\nCandidates Cols: " );
-	// 	print_array(candid_cols[j], 20);
-	// 	j++;
-	// }
+		printf("\nCandidates Cols: " );
+		print_array(candid_cols[j], 20);
+		j++;
+	}
 
 	// i = 0;
 
