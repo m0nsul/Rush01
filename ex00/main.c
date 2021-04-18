@@ -611,9 +611,6 @@ int main(int argc, char **argv)
 		i++;
 	}
 
-	ft_solve(grid, int_views, arr_rows, 0, 0);
-	ft_print_grid(grid);
-
 	j=0;
 	while (j < SIZE)
 	{
@@ -622,6 +619,11 @@ int main(int argc, char **argv)
 		print_array(candid_cols[j], 20);
 		j++;
 	}
+
+
+	ft_solve(grid, int_views, arr_rows, 0, 0);
+	ft_print_grid(grid);
+
 
 	// i = 0;
 
