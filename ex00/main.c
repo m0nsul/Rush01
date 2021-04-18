@@ -268,13 +268,6 @@ int	ft_calculate_row_view_right (int *row)
 	return views;
 }
 
-
-
-// int	*ft_validate_arg_views (char *str) 
-// {
-
-// }
-
 int	check_main (int argc, char **argv)
 {
 	if (argc != 2) 
@@ -296,6 +289,27 @@ int	check_main (int argc, char **argv)
 	return (1);
 }
 
+
+
+void reset () {
+  printf("\033[0m");
+}
+
+
+  void Black (){printf("\033[0;30m");}
+  void Red (){printf("\033[0;31m");}
+  void Green (){printf("\033[0;32m");}
+  void GreenBold (){printf("\033[1;32m");}
+  void Yellow (){printf("\033[0;33m");}
+  void Blue (){printf("\033[0;34m");}
+  void Purple (){printf("\033[0;35m");}
+  void Cyan (){printf("\033[0;36m");}
+  void White (){printf("\033[0;37m");}
+
+
+
+
+
 int	main (int argc, char **argv)
 {
 	int	filas;
@@ -307,14 +321,8 @@ int	main (int argc, char **argv)
 	int	max_posib;
 	int int_views[SIZE * SIZE];
 
-
 	check_main (argc, argv);
 	ft_viewscheck (argv[1], int_views);
-	
-
-	//print_array(int_views, SIZE * SIZE - 1);
-
-
 	max_posib = ft_calculate_max_posibilities();
 	arr = (int **) malloc (max_posib * sizeof (int *));
 	i = 0;
@@ -327,40 +335,32 @@ int	main (int argc, char **argv)
 	i = 0;
 	while (i < max_posib)
 	{
-		print_array(arr[i], SIZE);
-		printf ("\tL %d ", ft_calculate_row_view_left (arr[i]));
-		printf ("R %d ", ft_calculate_row_view_right (arr[i]));
+		// if (arr[i][0] == 1) Green();
+		// else if (arr[i][0] == 2) Yellow();
+		// else if (arr[i][0] == 3) Blue();
+		// else if (arr[i][0] == 4) Purple();
+		//print_array(arr[i], SIZE);
+		printf ("L %d ", ft_calculate_row_view_left (arr[i]));
+		printf ("R %d     ", ft_calculate_row_view_right (arr[i]));
 		j=0;
 		while (j++ < SIZE)
 		{
-			printf ("\tL%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
-			printf ("R%d (%d)", j - 1, int_views[SIZE * 3 + j - 1]);
 			if (ft_calculate_row_view_left (arr[i]) == int_views[SIZE * 2 + j - 1] && ft_calculate_row_view_right (arr[i]) == int_views[SIZE * 3 + j - 1])
-				printf (" OK\t");
-			else
-				printf ("   \t");
+			{
+				GreenBold();
+				printf ("\xE2\x9C\x94 ");
+			}
+			else printf ("  ");
+			print_array(arr[i], SIZE);
+			printf ("   L%d (%d)  ", j - 1, int_views[SIZE * 2 + j - 1]);
+			printf ("R%d (%d)  ", j - 1, int_views[SIZE * 3 + j - 1]);
+
+			reset ();
 		}
 		printf ("\n");
+		reset ();
 		i++;
 	}
-
-
-
-
-
-
-	// i = 0;
-	// while (i < max_posib)
-	// {
-	// 	j = 0;
-	// 	while (j < SIZE)
-	// 	{
-	// 		printf("%d ", arr[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
 	free(arr);
 	return (0);
 }
