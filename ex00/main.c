@@ -84,7 +84,7 @@ int ft_int_is_in_array(int c, int *arr)
 
 	size_of_arr = sizeof(arr);
 	i = 0;
-	while (i < sizeof(arr))
+	while (i < (int) sizeof(arr))
 	{
 		if (arr[i] == c)
 			return (1);
@@ -96,7 +96,6 @@ int ft_int_is_in_array(int c, int *arr)
 int ft_arrays_are_equal(int *arr1, int *arr2)
 {
 	int i;
-	int size;
 
 	i = 0;
 	while (i < SIZE)
@@ -448,7 +447,7 @@ int ft_calculate_views(int **grid, int *int_views)
 	return (1);
 }
 
-int ft_grid_is_valid(int **grid, int *int_views, int etapa)
+int ft_grid_is_valid(int **grid, int *int_views)
 {
 	if (!(ft_check_columns_repeat(grid)))
 		return (0);
@@ -471,7 +470,7 @@ int ft_solve(int **grid, int *int_views, int **arr_rows, int etapa, int success)
 	while (row < max_posib && !success)
 	{
 		ft_add_row_to_grid(grid, arr_rows[row], etapa);
-		if (ft_grid_is_valid(grid, int_views, etapa))
+		if (ft_grid_is_valid(grid, int_views))
 		{
 			if (etapa != SIZE - 1)
 			{
